@@ -1,0 +1,18 @@
+version: 0.2
+
+env:
+  variables:
+    SAM_CLI_TELEMETRY: 0
+
+phases:
+  install:
+    commands:
+      - npm install -g @angular/cli@16.2.6
+      - npm install
+  build:
+    commands:
+      - ng build --production
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'dist/Angular16'
