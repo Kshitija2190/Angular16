@@ -15,4 +15,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: 'dist/Angular16'
+  base-directory: 'dist/myapp'

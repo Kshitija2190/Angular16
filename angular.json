@@ -20,7 +20,7 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
+             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
@@ -31,6 +31,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -45,7 +51,51 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
+ 
+            "stage": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ]
+            },
+            "qa": {
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "dev": {
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
+            "localhost": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -54,7 +104,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "localhost"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -62,11 +112,20 @@
             "production": {
               "browserTarget": "myapp:build:production"
             },
-            "development": {
-              "browserTarget": "myapp:build:development"
+            "stage": {
+              "browserTarget": "myapp:build:stage"
+            },
+            "qa": {
+              "browserTarget": "myapp:build:qa"
+            },
+            "localhost": {
+              "browserTarget": "myapp:build:localhost"
+            },
+            "dev": {
+              "browserTarget": "myapp:build:dev"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "localhost"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -94,5 +153,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
