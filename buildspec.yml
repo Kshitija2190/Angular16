@@ -6,6 +6,8 @@ env:
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 20.x
     commands:
       - npm install -g @angular/cli@16.2.6
       - node --version
